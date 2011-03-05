@@ -1,21 +1,23 @@
-$.fn.flash = function() {
-  Travis.Helpers.Util.flash(this);
-}
-$.fn.unflash = function() {
-  Travis.Helpers.Util.unflash(this);
-}
-$.fn.deansi = function() {
-  this.html(Travis.Helpers.Util.deansi(this.html()));
-}
-$.fn.updateTimes = function() {
-  Travis.Helpers.Util.updateTimes(this);
-}
-$.fn.activateTab = function(tab) {
-  Travis.Helpers.Util.activateTab(this, tab);
-}
-$.fn.readableTime = function() {
-  $(this).each(function() { $(this).text(Travis.Helpers.Util.readableTime(parseInt($(this).attr('title')))); })
-}
+_.extend($.fn, {
+  flash: function() {
+    Travis.Helpers.Util.flash(this);
+  },
+  unflash: function() {
+    Travis.Helpers.Util.unflash(this);
+  },
+  deansi: function() {
+    this.html(Travis.Helpers.Util.deansi(this.html()));
+  },
+  updateTimes: function() {
+    Travis.Helpers.Util.updateTimes(this);
+  },
+  activateTab: function(tab) {
+    Travis.Helpers.Util.activateTab(this, tab);
+  },
+  readableTime: function() {
+    $(this).each(function() { $(this).text(Travis.Helpers.Util.readableTime(parseInt($(this).attr('title')))); })
+  }
+});
 
 Travis.Helpers.Util = {
   activateTab: function(element, tab) {
