@@ -15,8 +15,8 @@ Travis.Collections.Jobs = Backbone.Collection.extend({
   model: Travis.Models.Job,
   initialize: function(jobs, options) {
     _.bindAll(this, 'add', 'remove');
-    this.url = 'jobs';
   },
+  url: '/jobs',
   remove: function(attributes) {
     Backbone.Collection.prototype.remove.apply(this, [this.get(attributes.id)]);
   },
