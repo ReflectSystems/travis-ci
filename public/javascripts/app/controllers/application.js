@@ -7,7 +7,7 @@ Travis.Controllers.Application = Backbone.Controller.extend({
     '!/:username/:name/builds':     'repositoryHistory',
     '!/:username/:name/builds/:id': 'buildShow',
   },
-  run: function() {
+  initialize: function() {
     _.bindAll(this, 'repositoriesIndex', 'repositoryShow', 'repositoryHistory', 'buildShow', 'render', 'startLoading', 'stopLoading');
 
     this.templates    = Travis.Helpers.Util.loadTemplates();

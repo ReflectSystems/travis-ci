@@ -2,8 +2,7 @@ var Travis = {
   Controllers: {}, Collections: {}, Helpers: {}, Models: {}, Views: { Base: {} },
   start: function() {
     Backbone.history = new Backbone.History;
-    Travis.app = new Travis.Controllers.Application;
-    Travis.app.run();
+    Travis.app = new Travis.Controllers.Application();
   },
   trigger: function(event, data) {
     Travis.app.trigger(event, _.extend(data.build, { append_log: data.log }));
@@ -13,17 +12,6 @@ var Travis = {
 if(!INIT_DATA) {
   var INIT_DATA = {};
 }
-
-$(document).ready(function() {
-  if(!window.__TESTING__ && $('#application').length == 1) {
-    Travis.start();
-    Backbone.history.start();
-
-    var channels = ['repositories', 'jobs'];
-    // _.map(INIT_DATA.repositories || [], function(repository) { channels.push('repository_' + repository.id); });
-    _.each(channels, function(channel) { pusher.subscribe(channel).bind_all(Travis.trigger); })
-  }
-});
 
 Pusher.log = function() {
   if (window.console) {
@@ -35,7 +23,7 @@ Pusher.log = function() {
 if(!Function.prototype.bind) {
   Function.prototype.bind = function(binding) {
     return _.bind(this, binding);
-  }
+  };
 }
 
 // Fix for [IE8 AJAX payload caching][1]
@@ -43,7 +31,17 @@ if(!Function.prototype.bind) {
 $.ajaxSetup({ cache: false });
 
 $(document).ready(function() {
-  $('#profile').click(function() {
+  if(!window.__TESTING__ && $('#application').length == 1) {
+    Travis.start();
+    Backbone.history.start();
+
+    var channels = ['repositories', 'jobs'];
+    // _.map(INIT_DATA.repositories || [], function(repository) { channels.push('repository_' + repository.id); });
+    _.each(channels, function(channel) { pusher.subscribe(channel).bind_all(Travis.trigger); })
+  }
+  
+  $('#profile').click(function(e) {
+    e.preventDefault();
     console.log(this)
     $('#profile_menu').toggle();
   });
