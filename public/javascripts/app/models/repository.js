@@ -45,7 +45,6 @@ Travis.Collections.Repositories = Backbone.Collection.extend({
     _.bindAll(this, 'find', 'last', 'setSelected', 'update');
   },
   url: function() {
-    var url = '/repositories';
     return '/repositories' + Travis.Helpers.Util.queryString(this.args);
   },
   building: function() {
