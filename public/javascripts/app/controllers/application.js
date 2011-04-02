@@ -10,7 +10,14 @@ Travis.Controllers.Application = Backbone.Controller.extend({
     _.bindAll(this, 'recent', 'byUser', 'repository', 'repositoryHistory', 'repositoryBuild', 'repositoryShow', 'repositorySelected',
       'buildQueued', 'buildStarted', 'buildLogged', 'buildFinished');
   },
+<<<<<<< HEAD
   run: function() {
+=======
+  initialize: function() {
+    _.bindAll(this, 'repositoriesIndex', 'repositoryShow', 'repositoryHistory', 'buildShow', 'render', 'startLoading', 'stopLoading');
+
+    this.templates    = Travis.Helpers.Util.loadTemplates();
+>>>>>>> 95ab267071de5804c8ac5e83bf19c4d9b00d1cd6
     this.repositories = new Travis.Collections.Repositories();
     this.jobs         = new Travis.Collections.Jobs();
     this.workers      = new Travis.Collections.Workers();
